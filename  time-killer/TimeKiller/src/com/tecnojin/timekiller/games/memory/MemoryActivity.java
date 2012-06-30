@@ -1,12 +1,9 @@
 package com.tecnojin.timekiller.games.memory;
 
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
+import android.util.Log;
 
 import com.tecnojin.timekiller.activity.GameActivity;
 import com.tecnojin.timekiller.games.GameManager;
-import com.tecnojin.timekiller.games.memory.MemoryState.onChangeListener;
 import com.tecnojin.timekiller.views.matrix.AbstractMatrix.CellClickedListener;
 import com.tecnojin.timekiller.views.matrix.Cell;
 
@@ -23,8 +20,11 @@ public class MemoryActivity extends GameActivity{
 		matrix.setListener(new CellClickedListener<Integer>() {
 
 			public void onClick(Cell<Integer> cell) {
-				state.tapOnCell(cell.getRow(),cell.getCol());
+				int a=state.tapOnCell(cell.getRow(),cell.getCol());
+				Log.d("Jin","Return "+a);
 				matrix.updateStatus();
+				if(state.isCompleted())
+					gameTerminated();
 				
 			}
 
@@ -33,13 +33,6 @@ public class MemoryActivity extends GameActivity{
 			}
 		});
 		
-		state.setListener(new onChangeListener(new Handler(){
-			@Override
-			public void handleMessage(Message msg) {
-				matrix.updateStatus();
-				
-			}
-		}));
 		
 	}
 	private void initState(int dif) {

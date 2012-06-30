@@ -12,16 +12,19 @@ import android.os.Handler;
 import android.util.Log;
 
 public class MemoryState {
-	private static final long timeout=500;
+	public static final int FIRST_TOUCH=1;
+	public static final int SECOND_TOUCH_WRONG=2;
+	public static final int SECOND_TOUCH_OK=3;
+	public static final int STILL_FLIPPED=4;
+	public static final long timeout=500;
 	private int [][] matrix;
 	private boolean [][] flipped;
 	private int rows,cols;
-	private Point lastFlipped;
-	private Timer timer;
+	private Point firstTap,secondTap;
+
 	private int founds;
-	private boolean stillWaiting=false;
+
 	private int errors;
-	private onChangeListener listener;
 
 
 	public MemoryState(int row, int col) {
@@ -35,7 +38,7 @@ public class MemoryState {
 	private void reset() {
 		errors=0;
 		founds=0;
-		timer=new Timer();
+
 		matrix=new int [rows][cols];
 		flipped=new boolean [rows][cols];
 		LinkedList<Integer> l=new LinkedList<Integer>();
@@ -52,23 +55,45 @@ public class MemoryState {
 				matrix[i][j]=l.removeFirst();				
 
 	}
-	public void tapOnCell(int row,int col){		
-		if(isFlipped(row,col))
-			return;		
-		if(lastFlipped!=null)
-			if(lastFlipped.equals(new Point(row,col)))
-				return;
-		if(lastFlipped==null){
-			flipped[row][col]=true;
-			lastFlipped=new Point(row,col);					
-			return;
+	public int tapOnCell(int row,int col){		
+		if(isFlipped(row, col))
+			return STILL_FLIPPED;
+		if(firstTap!=null && secondTap!=null)
+			updateTapped();
+		if(firstTap==null ){
+			firstTap=new Point(row,col);
+			flipped[firstTap.x][firstTap.y]=true;
+			return FIRST_TOUCH;
 		}
-		else
-			if(!stillWaiting){
-				flipped[row][col]=true;
-				timer.schedule(new FlippingTask(new Point(row,col)),timeout);
-				
+		if(firstTap!=null && secondTap==null){
+			secondTap=new Point(row,col);
+			if(matrix[firstTap.x][firstTap.y]==matrix[secondTap.x][secondTap.y]){
+				flipped[firstTap.x][firstTap.y]=true;
+				flipped[secondTap.x][secondTap.y]=true;
+				firstTap=null;
+				secondTap=null;
+				founds++;
+				return SECOND_TOUCH_OK;				
 			}
+			if(matrix[firstTap.x][firstTap.y]!=matrix[secondTap.x][secondTap.y]){
+				flipped[firstTap.x][firstTap.y]=true;
+				flipped[secondTap.x][secondTap.y]=true;
+				errors++;
+				return SECOND_TOUCH_WRONG;				
+			}
+		}
+		throw new RuntimeException("OPS");
+
+	}
+
+	public void updateTapped() {
+
+		flipped[firstTap.x][firstTap.y]=false;
+
+		flipped[secondTap.x][secondTap.y]=false;
+		firstTap=null;
+		secondTap=null;
+
 	}
 
 	public boolean isFlipped(int row, int col) {
@@ -80,36 +105,7 @@ public class MemoryState {
 	public int getCols() {
 		return cols;
 	}
-	class FlippingTask extends TimerTask{
-		private Point p;		
 
-		public FlippingTask(Point p) {
-			super();
-			stillWaiting=true;
-			this.p = p;
-		}
-		@Override
-		public void run() {
-			stillWaiting=false;
-
-			if(matrix[lastFlipped.x][lastFlipped.y]==matrix[p.x][p.y]){
-				flipped[lastFlipped.x][lastFlipped.y]=true;
-				flipped[p.x][p.y]=true;
-				founds++;
-			}
-			else{
-				flipped[lastFlipped.x][lastFlipped.y]=false;
-				flipped[p.x][p.y]=false;
-				errors++;
-			}
-			if(listener!=null)
-				listener.update();
-			lastFlipped=null;
-
-
-		}
-
-	}
 	public boolean isCompleted(){
 		return founds==((rows*cols)/2);
 	}
@@ -118,21 +114,6 @@ public class MemoryState {
 		return matrix[i][j];
 	}
 
-	public static class onChangeListener{
-		private Handler hand;	
-
-		public onChangeListener(Handler hand) {
-			super();
-			this.hand = hand;
-		}
-
-		public void update(){
-			hand.sendEmptyMessage(1);
-		}
-	}
-	public void setListener(onChangeListener listener) {
-		this.listener = listener;
-	}
 
 
 }
