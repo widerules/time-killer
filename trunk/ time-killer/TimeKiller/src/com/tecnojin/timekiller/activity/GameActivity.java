@@ -10,6 +10,8 @@
  ******************************************************************************/
 package com.tecnojin.timekiller.activity;
 
+import java.text.DecimalFormat;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -27,6 +29,8 @@ import com.google.ads.AdView;
 import com.tecnojin.timekiller.R;
 import com.tecnojin.timekiller.games.GameManager;
 import com.tecnojin.timekiller.games.descriptors.GameDescriptor;
+import com.tecnojin.timekiller.games.descriptors.options.Stat;
+import com.tecnojin.timekiller.games.descriptors.options.StatSet;
 import com.tecnojin.timekiller.util.ActivityUtil;
 
 public abstract class GameActivity extends Activity {
@@ -124,5 +128,47 @@ public abstract class GameActivity extends Activity {
 		AdRequest request = new AdRequest();	   
 		adView.loadAd(request);
 	}
+
+	protected void updateStatistics(boolean isTerminated,char difficult){
+		try{
+			StatSet s=game.getStatistics();
+
+			String played="played"+difficult;
+			String terminated="terminated"+difficult;
+			String percent="percent"+difficult;
+
+			double p=Integer.parseInt(s.findStatForKey(played).getCurrentValue());
+			double t=Integer.parseInt(s.findStatForKey(terminated).getCurrentValue());
+
+			p++;
+			if(isTerminated){
+				t++;
+			}
+			double per=0;
+			
+				per=t/p;
+				per*=100;
+
+				per=roundTwoDecimals(per);
+			
+
+
+
+			s.findStatForKey(played).setCurrentValue(((int)p)+"");
+			s.findStatForKey(terminated).setCurrentValue(((int)t)+"");
+			s.findStatForKey(percent).setCurrentValue(((int)per)+" %");
+
+			s.save(this);
+
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	double roundTwoDecimals(double d) {
+		DecimalFormat twoDForm = new DecimalFormat("#.##");
+		return Double.valueOf(twoDForm.format(d));
+	}
+
 
 }

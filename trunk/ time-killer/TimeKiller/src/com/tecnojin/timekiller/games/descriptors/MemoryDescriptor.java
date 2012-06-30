@@ -5,6 +5,8 @@ import android.content.Context;
 import com.tecnojin.timekiller.R;
 import com.tecnojin.timekiller.games.descriptors.options.Option;
 import com.tecnojin.timekiller.games.descriptors.options.OptionSet;
+import com.tecnojin.timekiller.games.descriptors.options.Stat;
+import com.tecnojin.timekiller.games.descriptors.options.StatSet;
 import com.tecnojin.timekiller.games.descriptors.options.Tutorial;
 import com.tecnojin.timekiller.games.descriptors.options.Tutorial.Page;
 import com.tecnojin.timekiller.games.memory.MemoryActivity;
@@ -16,7 +18,25 @@ public class MemoryDescriptor extends GameDescriptor{
 	public MemoryDescriptor(Context c){
 		initOption(c);
 		initTutorial();
+		initStats(c);
 		gameActivity=MemoryActivity.class;
+	}
+	private void initStats(Context c) {
+		Stat playedEasy=new Stat(R.string.GamePlayedEasy, "playedE", 0+"");
+		Stat terminatedEasy=new Stat(R.string.GameResolvedEasy, "terminatedE", 0+"");
+		Stat percentEasy=new Stat(R.string.percentualEasy, "percentE", 0+"");
+		
+		Stat playedMedium=new Stat(R.string.GamePlayedMedium, "playedM", 0+"");
+		Stat terminatedMedium=new Stat(R.string.GameResolvedMedium, "terminatedM", 0+"");
+		Stat percentMedium=new Stat(R.string.percentualMedium, "percentM", 0+"");
+		
+		Stat playedMHard=new Stat(R.string.GamePlayedHard , "playedH", 0+"");
+		Stat terminatedHard=new Stat(R.string.GameResolvedHard, "terminatedH", 0+"");
+		Stat percentHard=new Stat(R.string.percentualHard, "percentH", 0+"");
+		
+		statistics=new StatSet("stat_memory.txt",playedEasy,terminatedEasy,percentEasy,playedMedium,terminatedMedium,percentMedium,playedMHard,terminatedHard,percentHard);
+		statistics.load(c);
+		
 	}
 
 	private void initOption(Context c) {

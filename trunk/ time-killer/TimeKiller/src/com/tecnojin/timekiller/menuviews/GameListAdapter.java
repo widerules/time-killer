@@ -56,16 +56,20 @@ public class GameListAdapter extends ArrayAdapter<GameDescriptor>{
 			TextView name=(TextView) v.findViewById(R.id.game_name);
 			name.setText(g.getName());
 			ImageView settings=(ImageView) v.findViewById(R.id.settings);
-			ImageView play=(ImageView) v.findViewById(R.id.play);
+			ImageView stat=(ImageView) v.findViewById(R.id.stat);
 			ImageView info=(ImageView) v.findViewById(R.id.tutorial);	
 			
-			play.setOnClickListener(new myOnclickListener(myOnclickListener.PLAY,GameManager.instance(context).getIndexFor(g),context));
 			settings.setOnClickListener(new myOnclickListener(myOnclickListener.SETTINGS,GameManager.instance(context).getIndexFor(g),context));
 			info.setOnClickListener(new myOnclickListener(myOnclickListener.TUTORIAL,GameManager.instance(context).getIndexFor(g),context));
+			stat.setOnClickListener(new myOnclickListener(myOnclickListener.STATISTICS,GameManager.instance(context).getIndexFor(g),context));
+			
+			if(g.getStatistics()==null)
+				stat.setVisibility(View.INVISIBLE);
 		}
 		else{
 			v=li.inflate(R.layout.game_list_item_front, null);
 			ImageView icon=(ImageView) v.findViewById(R.id.gameIcon);
+			icon.setOnClickListener(new myOnclickListener(myOnclickListener.PLAY,GameManager.instance(context).getIndexFor(g),context));
 			TextView name=(TextView) v.findViewById(R.id.game_name);
 			if(g.isReady())
 			icon.setImageResource(g.getIcon());
