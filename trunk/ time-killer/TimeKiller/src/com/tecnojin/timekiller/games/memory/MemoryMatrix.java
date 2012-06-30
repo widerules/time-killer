@@ -5,6 +5,7 @@ import java.util.Random;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 
 import com.tecnojin.timekiller.views.matrix.AbstractMatrix;
 import com.tecnojin.timekiller.views.matrix.BackGroundCell;
@@ -43,22 +44,19 @@ public class MemoryMatrix extends AbstractMatrix<Integer>{
 	private void updateCell(Cell<Integer> cell) {	
 		BorderCell<Integer> b=(BorderCell<Integer>) cell;
 		if(state.isFlipped(cell.getRow(), cell.getCol())){
-			b.setBackgroundColor(map.get(state.getAt(cell.getRow(),cell.getCol())));
+			b.setBackgroundColor(Color.GREEN);
 			b.setString("");
 		}
 		else{
 			b.setBackgroundColor(Color.WHITE);
 			b.setString(state.getAt(cell.getRow(),cell.getCol())+"");
 		}
-		
-			
-			
-
 	}
 
 	public void updateStatus(){
 		for(int i=0;i<state.getRows();i++)
-			for(int j=0;j<state.getCols();j++){				
+			for(int j=0;j<state.getCols();j++){	
+				
 				updateCell(getCell(i, j));
 			}			
 		invalidate();

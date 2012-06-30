@@ -37,7 +37,8 @@
         <activity android:name=".games.alignpuzzle.AlignPuzzleActivity"></activity>
         <activity android:name=".games.frog.FrogActivity"></activity>
         <activity android:name=".games.mines.MinesActivity"></activity>
-        <activity android:name=".games.memory.MemoryActivity"></activity>         
+        <activity android:name=".games.memory.MemoryActivity"></activity>
+        <activity android:name=".games.puzzle15.Puzzle15Activity"></activity>         
        
     </application>
  
