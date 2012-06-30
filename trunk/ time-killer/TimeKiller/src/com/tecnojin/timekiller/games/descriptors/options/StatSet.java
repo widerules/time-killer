@@ -1,4 +1,3 @@
-
 /*******************************************************************************
  * Copyright (c) 2012 Vincenzo Marzano.
  * All rights reserved. This program and the accompanying materials
