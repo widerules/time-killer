@@ -42,14 +42,15 @@ public class MemoryMatrix extends AbstractMatrix<Integer>{
 
 	private void updateCell(Cell<Integer> cell) {	
 		BorderCell<Integer> b=(BorderCell<Integer>) cell;
-		if(state.isFlipped(cell.getRow(), cell.getCol()))
+		if(state.isFlipped(cell.getRow(), cell.getCol())){
 			b.setBackgroundColor(map.get(state.getAt(cell.getRow(),cell.getCol())));
-		else
-			b.setBackgroundColor(Color.WHITE);
-		if(!state.isFlipped(cell.getRow(), cell.getCol()))
-			b.setString(state.getAt(cell.getRow(),cell.getCol())+"");
-		else
 			b.setString("");
+		}
+		else{
+			b.setBackgroundColor(Color.WHITE);
+			b.setString(state.getAt(cell.getRow(),cell.getCol())+"");
+		}
+		
 			
 			
 
@@ -59,8 +60,7 @@ public class MemoryMatrix extends AbstractMatrix<Integer>{
 		for(int i=0;i<state.getRows();i++)
 			for(int j=0;j<state.getCols();j++){				
 				updateCell(getCell(i, j));
-			}
-			
+			}			
 		invalidate();
 
 	}
