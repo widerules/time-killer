@@ -16,6 +16,7 @@ public class MemoryState {
 	public static final int SECOND_TOUCH_WRONG=2;
 	public static final int SECOND_TOUCH_OK=3;
 	public static final int STILL_FLIPPED=4;
+	public static final int NOTHING_TO_DO=5;
 	public static final long timeout=500;
 	private int [][] matrix;
 	private boolean [][] flipped;
@@ -58,8 +59,6 @@ public class MemoryState {
 	public int tapOnCell(int row,int col){		
 		if(isFlipped(row, col))
 			return STILL_FLIPPED;
-		if(firstTap!=null && secondTap!=null)
-			updateTapped();
 		if(firstTap==null ){
 			firstTap=new Point(row,col);
 			flipped[firstTap.x][firstTap.y]=true;
@@ -82,14 +81,12 @@ public class MemoryState {
 				return SECOND_TOUCH_WRONG;				
 			}
 		}
-		throw new RuntimeException("OPS");
+		return NOTHING_TO_DO;
 
 	}
 
 	public void updateTapped() {
-
 		flipped[firstTap.x][firstTap.y]=false;
-
 		flipped[secondTap.x][secondTap.y]=false;
 		firstTap=null;
 		secondTap=null;
@@ -97,6 +94,7 @@ public class MemoryState {
 	}
 
 	public boolean isFlipped(int row, int col) {
+		
 		return flipped[row][col];
 	}
 	public int getRows() {

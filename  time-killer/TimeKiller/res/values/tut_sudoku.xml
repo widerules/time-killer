@@ -30,5 +30,9 @@
     <string name="mines_text_1">Complete the level and shut up!!!</string>
     <string name="memory_title_1">What?</string>
     <string name="memory_text_1">Complete the level and shut up!!!</string>
+    <string name="puzzle15_title_1">What?</string>
+    <string name="puzzle15_text_1">Complete the level placing the cells in ascendent sequence</string>
+    <string name="puzzle15_title_2">How?</string>
+    <string name="puzzle15_text_2">Click on a cell that is neas the Hole and move it! Simple to say but not a lot to do.</string>
 
 </resources>

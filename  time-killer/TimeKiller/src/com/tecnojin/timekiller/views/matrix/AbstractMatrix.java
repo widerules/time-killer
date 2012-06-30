@@ -201,9 +201,9 @@ public abstract class AbstractMatrix<T> extends View implements Matrix,OnTouchLi
 	}
 
 	public Cell<T> getCell(int row,int col){
-		if(cols>rows)
-			return cells.get((rows*row)+col);
-		throw new RuntimeException("Fix that fucking problem!!!");
+		//if(cols>rows)
+			return cells.get((cols*row)+col);
+		//return null;
 	}
 	public void setAllowMoove(boolean allowMoove) {
 		this.allowMoove = allowMoove;

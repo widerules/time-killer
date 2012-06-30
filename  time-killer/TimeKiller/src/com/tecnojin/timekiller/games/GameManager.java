@@ -24,9 +24,11 @@ import com.tecnojin.timekiller.games.descriptors.GameDescriptor;
 import com.tecnojin.timekiller.games.descriptors.ImpiccatoDescriptor;
 import com.tecnojin.timekiller.games.descriptors.MemoryDescriptor;
 import com.tecnojin.timekiller.games.descriptors.MinesDescriptor;
+import com.tecnojin.timekiller.games.descriptors.Puzzle15Descriptor;
 import com.tecnojin.timekiller.games.descriptors.SudokuDescriptor;
 import com.tecnojin.timekiller.games.descriptors.options.Option;
 import com.tecnojin.timekiller.games.descriptors.options.OptionSet;
+import com.tecnojin.timekiller.games.puzzle15.Puzzle15State;
 
 public class GameManager {
 	public static final int FILL_IT=1;
@@ -36,6 +38,7 @@ public class GameManager {
 	public static final int FROG_LABIRINTH=5;
 	public static final int MINES=6;
 	public static final int MEMORY=7;
+	public static final int PUZZLE15=8;
 
 	private static GameManager instance;
 
@@ -46,6 +49,8 @@ public class GameManager {
 	private static FrogLabirinthDescriptor frog;
 	private static MinesDescriptor mines;
 	private static MemoryDescriptor memory;
+	private static Puzzle15Descriptor puzzle15;
+
 
 	private OptionSet globalOptionSet;
 
@@ -93,11 +98,14 @@ public class GameManager {
 		case MEMORY:
 			if(memory==null) memory=new MemoryDescriptor(c);
 			return memory;	
+		case PUZZLE15:
+			if(puzzle15==null) puzzle15=new Puzzle15Descriptor(c);
+			return puzzle15;	
 		}
 		return null;
 	}
 	public synchronized int getGameNumber(){
-		return 7;
+		return 8;
 	}
 
 	public GameDescriptor getGameFromIndex(Context c, int position) {
@@ -116,6 +124,8 @@ public class GameManager {
 			return getGame(MINES, c);
 		case 6:
 			return getGame(MEMORY, c);
+		case 7:
+			return getGame(PUZZLE15, c);
 		}
 		return null;
 	}
@@ -138,11 +148,13 @@ public class GameManager {
 			return MINES;
 		if(descriptor==memory)
 			return MEMORY;
+		if(descriptor==puzzle15)
+			return PUZZLE15;
 		return -2;
 	}
 	public List<String> getGameNameList(){
 		LinkedList<String> l=new LinkedList<String>();
-		Collections.addAll(l, "sudoku","fill it","hangman","align","frog","mines","memory");
+		Collections.addAll(l, "sudoku","fill it","hangman","align","frog","mines","memory","puzzle15");
 		return l;
 	}
 

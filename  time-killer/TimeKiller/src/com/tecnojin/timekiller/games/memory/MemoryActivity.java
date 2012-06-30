@@ -21,12 +21,16 @@ public class MemoryActivity extends GameActivity{
 
 			public void onClick(Cell<Integer> cell) {
 				int a=state.tapOnCell(cell.getRow(),cell.getCol());
-				Log.d("Jin","Return "+a);
+			
+				if(a==MemoryState.NOTHING_TO_DO)
+					state.updateTapped();
 				matrix.updateStatus();
 				if(state.isCompleted())
 					gameTerminated();
 				
 			}
+
+			
 
 			public void onLonkClick(Cell<Integer> cell) {
 								

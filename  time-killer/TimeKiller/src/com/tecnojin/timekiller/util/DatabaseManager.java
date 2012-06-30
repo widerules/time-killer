@@ -125,7 +125,7 @@ public class DatabaseManager {
 			c.close();
 		}
 		catch (Exception e) {
-
+			e.printStackTrace();
 		}
 		close(db);
 		return map;

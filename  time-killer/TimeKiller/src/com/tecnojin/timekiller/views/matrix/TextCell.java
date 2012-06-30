@@ -32,7 +32,7 @@ public class TextCell<T> extends BackGroundCell<T> {
 		this.string=string;
 		textColor=Color.BLACK;
 		initPaint();
-		size=30;
+
 
 
 	}
@@ -40,7 +40,11 @@ public class TextCell<T> extends BackGroundCell<T> {
 		p=new Paint();
 		p.setStyle(Style.FILL_AND_STROKE);
 		p.setColor(textColor);
-		p.setTextSize(size);
+		if(size!=0)
+			p.setTextSize(size);
+		else
+		p.setTextSize(getHeight());
+
 		p.setTextAlign(Align.CENTER);
 		if(typeFace!=null)
 			p.setTypeface(typeFace);
@@ -57,7 +61,7 @@ public class TextCell<T> extends BackGroundCell<T> {
 			c.drawText(string,getLeft()+getWidth()/2,getTop()+getHeight()/2,p);
 		else
 			c.drawText(string,getLeft(),getTop()+getHeight(),p);
-			*/
+		 */
 	}
 	public void setTextColor(int textColor) {
 		this.textColor = textColor;
@@ -80,10 +84,10 @@ public class TextCell<T> extends BackGroundCell<T> {
 		this.string = string;
 	}
 	void drawtext(Canvas c, int topLeftX, int topLeftY, int width, int height) {
-	  
-	    Rect bounds = new Rect();
-	    p.getTextBounds(string, 0, string.length(), bounds);
-	    c.drawText(string, topLeftX+width/2, topLeftY+height/2+(bounds.bottom-bounds.top)/2, p);
+
+		Rect bounds = new Rect();
+		p.getTextBounds(string, 0, string.length(), bounds);
+		c.drawText(string, topLeftX+width/2, topLeftY+height/2+(bounds.bottom-bounds.top)/2, p);
 	}
 
 }
