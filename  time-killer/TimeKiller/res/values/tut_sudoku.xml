@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright (c) 2012 Vincenzo Marzano.
+  All rights reserved. This program and the accompanying materials
+  are made available under the terms of the GNU Public License v3.0
+  which accompanies this distribution, and is available at
+  http://www.gnu.org/licenses/gpl.html
+  
+  Contributors:
+      Vincenzo Marzano - initial API and implementation
+-->
+<resources>
+
+    <string name="sudoku_title_1">How To Play</string>
+    <string name="sudoku_text_1">The objective is to fill a 9×9 grid with digits so that each column, each row, and each of the nine 3×3 sub-grids that compose the grid contains all of the digits from 1 to 9</string>
+    <string name="flood_title_1">What?</string>
+    <string name="flood_text_1">The objective is to fill the grid with only one color</string>
+    <string name="flood_title_2">How?</string>
+    <string name="flood_text_2">You can control the Cell at Up West and all the cells that are nearby it and has the same color. Every time you change
+        the color of the first cell, all reachable cells with the same colo changes too!</string>
+    <string name="align_title_1">What?</string>
+    <string name="align_text_1">The objective is to align all the cells to have rows with same colors</string>
+    <string name="align_title_2">How?</string>
+    <string name="align_text_2">Click on one cell to do an action. If the cell is nearby the hole, the cell is moved on the hole. Otherwise the circle that contain the cell will rotate.</string>
+    <string name="frog_title_1">What?</string>
+    <string name="frog_text_1">The objective is to move the frog over all leaf</string>
+    <string name="frog_title_2">How?</string>
+    <string name="frog_text_2">Click on the leaf that you want to reach. Remember that the frog cannot go backward a cannot move diagonally</string>
+    <string name="mines_title_1">What?</string>
+    <string name="mines_text_1">Complete the level and shut up!!!</string>
+    <string name="memory_title_1">What?</string>
+    <string name="memory_text_1">Complete the level and shut up!!!</string>
+
+</resources>
