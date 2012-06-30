@@ -10,14 +10,19 @@
  ******************************************************************************/
 package com.tecnojin.timekiller.games.descriptors;
 
+
+
 import com.tecnojin.timekiller.activity.GameActivity;
 import com.tecnojin.timekiller.games.descriptors.options.OptionSet;
+import com.tecnojin.timekiller.games.descriptors.options.StatSet;
 import com.tecnojin.timekiller.games.descriptors.options.Tutorial;
 
 public abstract class GameDescriptor {
 
 	protected OptionSet options;	
 	protected Tutorial tutorial;	
+	protected StatSet statistics;
+	
 	protected Class<? extends GameActivity> gameActivity;
 	protected GameDescriptor (){}
 
@@ -31,6 +36,9 @@ public abstract class GameDescriptor {
 	}
 	public Tutorial getTutorial() {
 		return tutorial;
+	}
+	public StatSet getStatistics() {
+		return statistics;
 	}
 
 

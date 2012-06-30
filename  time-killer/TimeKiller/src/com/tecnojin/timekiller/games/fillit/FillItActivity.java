@@ -29,16 +29,19 @@ public class FillItActivity extends GameActivity {
 	private FillItVector vector;
 	private int moves;
 	private TextView t;
+	private char diff='E';
 	@Override
 	public void loadGame() {
 		int dif=Integer.parseInt(GameManager.instance(this).getGame(GameManager.FILL_IT, this).getOptions().findOptionForKey("diff").getCurrentValue());
 		int side=12;
 		cut=22;
 		if(dif==2){
+			diff='M';
 			side=17;
 			cut=30;
 		}
 		if(dif==3){
+			diff='H';
 			side=22;
 			cut=36;
 		}
@@ -73,7 +76,10 @@ public class FillItActivity extends GameActivity {
 				matrix.updateState();
 				
 				if(state.isComplete() || moves==cut){
+					updateStatistics(state.isComplete(), diff);
 					gameTerminated();
+					
+					
 				}
 				
 			}

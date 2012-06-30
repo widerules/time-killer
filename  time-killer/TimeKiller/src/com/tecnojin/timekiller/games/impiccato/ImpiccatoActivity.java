@@ -108,6 +108,9 @@ public class ImpiccatoActivity extends GameActivity {
 				if(im.isComplete() || im.getErrors()>5){
 					gameTerminated(getResources().getString(R.string.wordis)+" \n"+im.getoriginalWord());
 					m.setEnabled(false);
+					
+					
+						
 				}
 				updateWord();
 

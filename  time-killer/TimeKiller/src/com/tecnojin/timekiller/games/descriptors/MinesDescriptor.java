@@ -15,6 +15,8 @@ import android.content.Context;
 import com.tecnojin.timekiller.R;
 import com.tecnojin.timekiller.games.descriptors.options.Option;
 import com.tecnojin.timekiller.games.descriptors.options.OptionSet;
+import com.tecnojin.timekiller.games.descriptors.options.Stat;
+import com.tecnojin.timekiller.games.descriptors.options.StatSet;
 import com.tecnojin.timekiller.games.descriptors.options.Tutorial;
 import com.tecnojin.timekiller.games.descriptors.options.Tutorial.Page;
 import com.tecnojin.timekiller.games.mines.MinesActivity;
@@ -24,6 +26,7 @@ public class MinesDescriptor extends GameDescriptor {
 	public MinesDescriptor(Context c){
 		initOptions(c);
 		initTutorial();
+		initStats(c);
 		gameActivity=MinesActivity.class;
 	}
 
@@ -33,6 +36,24 @@ public class MinesDescriptor extends GameDescriptor {
 		tutorial=new Tutorial(p1);
 		
 	}
+	private void initStats(Context c) {
+		Stat playedEasy=new Stat(R.string.GamePlayedEasy, "playedE", 0+"");
+		Stat terminatedEasy=new Stat(R.string.GameResolvedEasy, "terminatedE", 0+"");
+		Stat percentEasy=new Stat(R.string.percentualEasy, "percentE", 0+"");
+		
+		Stat playedMedium=new Stat(R.string.GamePlayedMedium, "playedM", 0+"");
+		Stat terminatedMedium=new Stat(R.string.GameResolvedMedium, "terminatedM", 0+"");
+		Stat percentMedium=new Stat(R.string.percentualMedium, "percentM", 0+"");
+		
+		Stat playedMHard=new Stat(R.string.GamePlayedHard , "playedH", 0+"");
+		Stat terminatedHard=new Stat(R.string.GameResolvedHard, "terminatedH", 0+"");
+		Stat percentHard=new Stat(R.string.percentualHard, "percentH", 0+"");
+		
+		statistics=new StatSet("stat_mines.txt",playedEasy,terminatedEasy,percentEasy,playedMedium,terminatedMedium,percentMedium,playedMHard,terminatedHard,percentHard);
+		statistics.load(c);
+		
+	}
+
 
 	private void initOptions(Context c) {
 		Option lang=new Option(Option.MULTIPLE, R.string.difficulty, "diff","2",new String [] {"1","2","3"} ,new int [] {R.string.easy,R.string.medium,R.string.hard}) ;

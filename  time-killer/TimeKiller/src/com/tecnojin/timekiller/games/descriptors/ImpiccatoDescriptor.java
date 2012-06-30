@@ -15,6 +15,8 @@ import android.content.Context;
 import com.tecnojin.timekiller.R;
 import com.tecnojin.timekiller.games.descriptors.options.Option;
 import com.tecnojin.timekiller.games.descriptors.options.OptionSet;
+import com.tecnojin.timekiller.games.descriptors.options.Stat;
+import com.tecnojin.timekiller.games.descriptors.options.StatSet;
 import com.tecnojin.timekiller.games.descriptors.options.Tutorial;
 import com.tecnojin.timekiller.games.descriptors.options.Tutorial.Page;
 import com.tecnojin.timekiller.games.impiccato.ImpiccatoActivity;
@@ -24,8 +26,29 @@ public class ImpiccatoDescriptor extends GameDescriptor{
 	public ImpiccatoDescriptor(Context c){
 		initSettings(c);
 		initTutorial();
+		initStatistics(c);
 		gameActivity=ImpiccatoActivity.class;
 
+	}
+	private void initStatistics(Context c) {
+		Stat triEng=new Stat(R.string.WordsTriedENG, "tryEng", 0+"");
+		Stat takenEng=new Stat(R.string.WordsTakedENG, "takeEng", 0+"");
+		Stat percentEng=new Stat(R.string.WordsPercentualENG, "percentEng", 0+"");		
+		Stat triITA=new Stat(R.string.WordsTriedIta, "tryita", 0+"");
+		Stat takenITA=new Stat(R.string.WordsTakedIta, "takeita", 0+"");
+		Stat percentITA=new Stat(R.string.WordsPercentualIta, "percentita", 0+"");		
+		
+		statistics=new StatSet("stat_hang.txt",
+				triEng,
+				takenEng,
+				percentEng
+				
+				,triITA,
+				takenITA,
+				percentITA);
+		
+		statistics.load(c);
+		
 	}
 	private void initTutorial() {
 		Page p=new Page(R.string.sudoku_title_1, R.drawable.work, R.string.hang_text);

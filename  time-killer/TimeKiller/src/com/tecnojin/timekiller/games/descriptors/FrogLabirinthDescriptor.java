@@ -13,6 +13,8 @@ package com.tecnojin.timekiller.games.descriptors;
 import android.content.Context;
 
 import com.tecnojin.timekiller.R;
+import com.tecnojin.timekiller.games.descriptors.options.Stat;
+import com.tecnojin.timekiller.games.descriptors.options.StatSet;
 import com.tecnojin.timekiller.games.descriptors.options.Tutorial;
 import com.tecnojin.timekiller.games.descriptors.options.Tutorial.Page;
 import com.tecnojin.timekiller.games.frog.FrogActivity;
@@ -22,6 +24,7 @@ public class FrogLabirinthDescriptor extends GameDescriptor{
 	public FrogLabirinthDescriptor(Context c) {
 		gameActivity=FrogActivity.class;
 		createTutorial();
+		initStatistics(c);
 	}
 
 	private void createTutorial() {
@@ -30,6 +33,15 @@ public class FrogLabirinthDescriptor extends GameDescriptor{
 		tutorial=new Tutorial(p1,p2);
 		
 	}
+	private void initStatistics(Context c) {
+		Stat played=new Stat(R.string.GamePlayed, "played", 0+"");
+		Stat terminated=new Stat(R.string.GameResolved, "terminated", 0+"");
+		Stat percent=new Stat(R.string.percentual, "percent", 0+"");	
+		statistics=new StatSet("stat_frog.txt", played,terminated,percent);
+		statistics.load(c);
+		
+	}
+
 
 	@Override
 	public int getName() {

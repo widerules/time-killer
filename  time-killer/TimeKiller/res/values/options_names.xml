@@ -19,5 +19,23 @@
     <string name="gameSelectStyle">Game Select Style</string>
     <string name="language">Language</string>
     <string name="difficulty">Difficulty</string>
+    <string name="GamePlayed">Games Played</string>
+    <string name="GameResolved">Games Completed</string>
+    <string name="percentual">Percentual</string>
+    <string name="GamePlayedEasy">[Easy] Games Played</string>
+    <string name="GameResolvedEasy">[Easy] Games Completed</string>
+    <string name="percentualEasy">[Easy] Percentual</string>
+    <string name="GamePlayedMedium">[Medium] Games Played</string>
+    <string name="GameResolvedMedium">[Medium] Games Completed</string>
+    <string name="percentualMedium">[Medium] Percentual</string>
+    <string name="GamePlayedHard">[Hard] Games Played</string>
+    <string name="GameResolvedHard">[Hard] Games Completed</string>
+    <string name="percentualHard">[Hard] Percentual</string>
+    <string name="WordsTakedIta">[ITA] Words taken</string>
+    <string name="WordsTriedIta">[ITA] Words tried</string>
+    <string name="WordsPercentualIta">[ITA] Percentual</string>
+    <string name="WordsTakedENG">[ENG] Words taken</string>
+    <string name="WordsTriedENG">[ENG] Words tried</string>
+    <string name="WordsPercentualENG">[ENG] Percentual</string>
 
 </resources>
