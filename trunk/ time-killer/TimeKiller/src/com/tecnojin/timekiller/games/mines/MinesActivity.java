@@ -64,11 +64,13 @@ public class MinesActivity extends GameActivity {
 					return;
 				}
 				state.touchOn(cell.getRow(), cell.getCol());
-				m.updadeState();
-				if(state.isComplete())
-					
-					gameTerminated(null);
 				
+				if(state.isMineFound()){
+					state.showAllMines();
+				}
+				if(state.isComplete())					
+					gameTerminated(null);
+				m.updadeState();
 			}
 
 			public void onLonkClick(Cell<Integer> cell) {

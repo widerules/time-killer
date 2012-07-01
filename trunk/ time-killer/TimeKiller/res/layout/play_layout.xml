@@ -12,6 +12,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/WhiteSmoke"
     android:orientation="vertical" >
 
     <LinearLayout
@@ -45,7 +46,7 @@
                 <View
                     android:layout_width="2px"
                     android:layout_height="fill_parent"
-                    android:background="#90909090" />
+                    android:background="@color/LightGrey" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -57,16 +58,11 @@
                         android:id="@+id/gamename"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="left"
+                        android:layout_gravity="center_horizontal"
                         android:text="Large Text"
-                        android:textAppearance="?android:attr/textAppearanceLarge" />
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@color/Black" />
 
-                    <TextView
-                        android:id="@+id/textView1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:text="@string/app_name" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
