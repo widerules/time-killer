@@ -50,12 +50,12 @@ public class StatisticsAdapter extends ArrayAdapter<Stat>{
 		Stat s=set.getStatAt(position);
 		
 		
-			v=li.inflate(R.layout.multi_option_item,null);
+			v=li.inflate(R.layout.statitem_layout,null);
 			TextView optionName=(TextView) v.findViewById(R.id.optionName);
 			TextView option2=(TextView) v.findViewById(R.id.option2);
-			TextView option3=(TextView) v.findViewById(R.id.option3);	  
+			  
 
-			option3.setVisibility(View.INVISIBLE);
+	
 			optionName.setText(s.getViewName());
 			option2.setText(s.getCurrentValue());	 
 

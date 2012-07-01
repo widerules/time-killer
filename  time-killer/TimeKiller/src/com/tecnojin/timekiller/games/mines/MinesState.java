@@ -125,7 +125,7 @@ public class MinesState {
 	public boolean isComplete(){
 		for(int i=0;i<rows;i++)
 			for(int j=0;j<cols;j++)
-				if(matrix[i][j]!=mines && !showed[i][j])
+				if(matrix[i][j]!=MINE && !showed[i][j])
 					return false;
 		return true;
 	}
@@ -134,6 +134,14 @@ public class MinesState {
 	}
 	public int getCols() {
 		return cols;
+	}
+
+	public void showAllMines() {
+		for(int i=0;i<rows;i++)
+			for(int j=0;j<cols;j++)
+				if(matrix[i][j]==MINE)
+					showed[i][j]=true;
+		
 	}
 
 

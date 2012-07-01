@@ -11,6 +11,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/WhiteSmoke"
     android:orientation="vertical" >
 
     <LinearLayout
@@ -29,13 +30,15 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:text="Large Text"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/Black" />
+
         </LinearLayout>
 
         <View
             android:layout_width="2px"
             android:layout_height="fill_parent"
-            android:background="#90909090" />
+            android:background="@color/DarkGray" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -55,7 +58,7 @@
         <View
             android:layout_width="2px"
             android:layout_height="fill_parent"
-            android:background="#90909090" />
+            android:background="@color/DarkGray" />
 
         <LinearLayout
             android:layout_width="0dp"

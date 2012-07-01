@@ -18,6 +18,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -55,6 +56,7 @@ public abstract class GameActivity extends Activity {
 		back.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View arg0) {
+				
 				finish();
 
 			}

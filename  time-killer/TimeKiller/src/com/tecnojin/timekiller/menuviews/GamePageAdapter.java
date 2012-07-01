@@ -17,6 +17,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,6 +28,7 @@ import com.tecnojin.timekiller.activity.StatisticsActivity;
 import com.tecnojin.timekiller.activity.TutorialActivity;
 import com.tecnojin.timekiller.games.GameManager;
 import com.tecnojin.timekiller.games.descriptors.GameDescriptor;
+import com.tecnojin.timekiller.util.ActivityUtil;
 
 public class GamePageAdapter extends PagerAdapter{
 	private Context context;
@@ -62,6 +65,7 @@ public class GamePageAdapter extends PagerAdapter{
 
 		if(descriptor.getName()!=0){
 			t.setText(descriptor.getName());
+			ActivityUtil.setFont(t, ActivityUtil.FONTS_BATES_SHOWER);
 			if(descriptor.isReady())
 				icon.setImageResource(descriptor.getIcon());
 			else
@@ -115,6 +119,7 @@ public class GamePageAdapter extends PagerAdapter{
 
 
 		public void onClick(View arg0) {
+				ActivityUtil.playAnimation(context, R.anim.push, arg0);	
 			if(mode==SETTINGS){
 				Intent i=new Intent(context,OptionActivity.class);
 				i.putExtra(context.getPackageName()+".option", gameCode);

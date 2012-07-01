@@ -13,9 +13,9 @@
 
     <string name="fillit">Fill It</string>
     <string name="sudoku">Sudoku</string>
-    <string name="hangman">The Hangman</string>
-    <string name="align">The Align Puzzle</string>
-    <string name="frog">The Frog Labirinth</string>
+    <string name="hangman">Hangman</string>
+    <string name="align">Align Puzzle</string>
+    <string name="frog">Frog Labirinth</string>
     <string name="mines">Mines</string>
     <string name="memory">Memory</string>
     <string name="puzzle15">Puzzle 15</string>
