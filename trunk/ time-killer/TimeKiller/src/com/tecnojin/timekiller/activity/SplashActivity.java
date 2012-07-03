@@ -1,7 +1,5 @@
 package com.tecnojin.timekiller.activity;
 
-import java.util.concurrent.ExecutionException;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -12,7 +10,7 @@ import com.tecnojin.timekiller.R;
 import com.tecnojin.timekiller.util.ActivityUtil;
 
 public class SplashActivity extends Activity{
-	private static long WAIT_TIME=4000;
+	private static long WAIT_TIME=1000;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

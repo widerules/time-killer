@@ -39,7 +39,7 @@ public class MainActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		ActivityUtil.makeFullScreen(this);
-		
+
 	}
 	@Override
 	protected void onStart() {
@@ -47,7 +47,7 @@ public class MainActivity extends Activity {
 		init();
 	}
 	private void init() {
-		
+
 		setContentView(R.layout.game_page_layout);
 		LinearLayout l=(LinearLayout) findViewById(R.id.container);
 
@@ -59,30 +59,34 @@ public class MainActivity extends Activity {
 			gamesList=new GameListView(this);
 			l.addView(gamesList);
 		}
-		
+
 		ImageView settingsImageView=(ImageView) findViewById(R.id.settings);
-		
+
 		settingsImageView.setOnClickListener(new OnClickListener() {
-			
+
 			public void onClick(View arg0) {
 				startActivity(new Intent(MainActivity.this,OptionActivity.class));
 			}
 		});
 		ImageView searc=(ImageView) findViewById(R.id.search);
 		searc.setOnClickListener(new OnClickListener() {
-			
+
 			public void onClick(View arg0) {
 				new FindGameDialog(MainActivity.this, new gameFindListener() {
-					
+
 					public void gameFound(GameDescriptor g) {
+						if(gamesPage!=null)
+							gamesPage.rollTo(g);
+						if(gamesList!=null)							
+							gamesList.rollTo(g);
 						
-						
+
 					}
 				}).show();
-				
+
 			}
 		});
-		
+
 	}
 	private boolean page() {
 		Option o=GameManager.instance(this).getGlobalOptions().findOptionForKey("style");
@@ -94,12 +98,12 @@ public class MainActivity extends Activity {
 		SharedPreferences s=getSharedPreferences(SHARED_PAGE,Context.MODE_WORLD_READABLE);
 		Editor e=s.edit();
 		if(gamesPage!=null)
-		e.putInt("page", gamesPage.getCurrentItem());
+			e.putInt("page", gamesPage.getCurrentItem());
 		if(gamesList!=null)
 			e.putInt("list", gamesList.getFirstVisiblePosition());
 		e.commit();
 		super.onPause();
-		
+
 	}
 	@Override
 	protected void onResume() {
@@ -108,9 +112,8 @@ public class MainActivity extends Activity {
 		int b=s.getInt("list", -1);
 		if(a>0 && gamesPage!=null)
 			gamesPage.setCurrentItem(a);
-		if(b>0 && gamesList!=null){
-			gamesList.setSelection(b);
-		}			
+		if(b>0 && gamesList!=null)
+			gamesList.setSelection(b);		
 		super.onResume();
 	}
 	@Override
@@ -121,5 +124,5 @@ public class MainActivity extends Activity {
 		e.commit();
 		super.onDestroy();
 	}
-	
+
 }

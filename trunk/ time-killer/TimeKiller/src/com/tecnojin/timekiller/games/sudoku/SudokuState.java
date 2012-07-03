@@ -14,10 +14,13 @@ import java.util.Set;
 import java.util.StringTokenizer;
 import java.util.TreeSet;
 
+import com.google.ads.o;
+
 import android.util.Log;
 
 public class SudokuState {
 	private short [][] matrix;
+	private boolean [][] original;
 	private int side;
 
 	public SudokuState(short[][] matrix) {
@@ -48,11 +51,20 @@ public class SudokuState {
 					matrix[row][j]=0;
 			row++;
 		}
+		initOriginal();
 		
 	}
 
 
 
+	private void initOriginal() {
+		original=new boolean [matrix.length][matrix[0].length];
+		for(int i=0;i<original.length;i++)
+			for(int j=0;j<original[0].length;j++)
+				if(matrix[i][j]!=0)
+					original[i][j]=true;
+		
+	}
 	public boolean isComplete(){
 		boolean r=checkRows();
 		boolean c=checkCols();
@@ -77,7 +89,6 @@ public class SudokuState {
 			else
 				s.add(matrix[row][i]);
 		}
-		Log.d("Jin",s+"");
 		if(s.size()!=side)
 			return false;
 
@@ -131,6 +142,9 @@ public class SudokuState {
 	}
 	public int getSide() {
 		return side;
+	}
+	public boolean canEdit(int r,int c){
+		return !original[r][c];
 	}
 
 

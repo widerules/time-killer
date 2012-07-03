@@ -12,14 +12,8 @@ package com.tecnojin.timekiller.games.memory;
 
 import java.util.Collections;
 import java.util.LinkedList;
-import java.util.Timer;
-import java.util.TimerTask;
-
-import com.google.ads.s;
 
 import android.graphics.Point;
-import android.os.Handler;
-import android.util.Log;
 
 public class MemoryState {
 	public static final int FIRST_TOUCH=1;

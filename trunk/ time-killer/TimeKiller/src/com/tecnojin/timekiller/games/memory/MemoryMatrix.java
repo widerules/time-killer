@@ -15,10 +15,8 @@ import java.util.Random;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.util.Log;
 
 import com.tecnojin.timekiller.views.matrix.AbstractMatrix;
-import com.tecnojin.timekiller.views.matrix.BackGroundCell;
 import com.tecnojin.timekiller.views.matrix.BorderCell;
 import com.tecnojin.timekiller.views.matrix.Cell;
 

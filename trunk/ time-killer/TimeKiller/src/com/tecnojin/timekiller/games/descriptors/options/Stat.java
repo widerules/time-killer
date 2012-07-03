@@ -16,6 +16,7 @@ public class Stat {
 	private int viewName;
 	private String key;
 	private String currentValue;	
+	private int page=0;
 
 
 	public Stat(int viewName, String key, String currentValue) {
@@ -23,6 +24,14 @@ public class Stat {
 		this.viewName = viewName;
 		this.key = key;
 		this.currentValue = currentValue;
+	}
+
+	public Stat(int viewName, String key, String currentValue,int page) {
+		super();
+		this.viewName = viewName;
+		this.key = key;
+		this.currentValue = currentValue;
+		this.page=page;
 	}
 
 
@@ -57,7 +66,9 @@ public class Stat {
 		Stat t=(Stat) o;
 		return t.key.equals(key);
 	}
-
+	public int getPage() {
+		return page;
+	}
 
 
 

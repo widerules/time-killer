@@ -31,12 +31,12 @@ public class ImpiccatoDescriptor extends GameDescriptor{
 
 	}
 	private void initStatistics(Context c) {
-		Stat triEng=new Stat(R.string.WordsTriedENG, "tryEng", 0+"");
-		Stat takenEng=new Stat(R.string.WordsTakedENG, "takeEng", 0+"");
-		Stat percentEng=new Stat(R.string.WordsPercentualENG, "percentEng", 0+"");		
-		Stat triITA=new Stat(R.string.WordsTriedIta, "tryita", 0+"");
-		Stat takenITA=new Stat(R.string.WordsTakedIta, "takeita", 0+"");
-		Stat percentITA=new Stat(R.string.WordsPercentualIta, "percentita", 0+"");		
+		Stat triEng=new Stat(R.string.WordsTriedENG, "tryEng", 0+"",0);
+		Stat takenEng=new Stat(R.string.WordsTakedENG, "takeEng", 0+"",0);
+		Stat percentEng=new Stat(R.string.WordsPercentualENG, "percentEng", 0+"",0);		
+		Stat triITA=new Stat(R.string.WordsTriedIta, "tryita", 0+"",1);
+		Stat takenITA=new Stat(R.string.WordsTakedIta, "takeita", 0+"",1);
+		Stat percentITA=new Stat(R.string.WordsPercentualIta, "percentita", 0+"",1);		
 		
 		statistics=new StatSet("stat_hang.txt",
 				triEng,

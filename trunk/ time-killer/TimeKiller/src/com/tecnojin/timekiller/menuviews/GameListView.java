@@ -15,6 +15,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.tecnojin.timekiller.games.descriptors.GameDescriptor;
+
 public class GameListView extends ListView{
 	private GameListAdapter gameListAdapter;
 	public GameListView(Context context) {
@@ -32,6 +34,11 @@ public class GameListView extends ListView{
 				
 			}
 		});
+	}
+	public void rollTo(GameDescriptor g){
+		int index=gameListAdapter.getPosition(g);
+		if(index>=0)
+			setSelection(index);
 	}
 
 }

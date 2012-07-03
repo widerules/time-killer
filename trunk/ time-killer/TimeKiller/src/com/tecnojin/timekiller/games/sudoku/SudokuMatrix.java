@@ -50,6 +50,9 @@ public class SudokuMatrix extends AbstractMatrix<Integer>{
 			b.setString(s+"");
 		else
 			b.setString(" ");
+		
+		if(!state.canEdit(row, col))
+			b.setTextColor(Color.RED);
 		return b;
 	}
 
@@ -60,20 +63,23 @@ public class SudokuMatrix extends AbstractMatrix<Integer>{
 					((BorderCell<Integer>)getCell(i, j)).setString(state.get(i, j)+"");
 				else
 					((BorderCell<Integer>)getCell(i, j)).setString(" ");
+				
 		invalidate();
 
 	}
 
 	public void next(int r,int c){
-		short a=state.get(r, c);
-		a++;
-		if(a>state.getSide())
-			a=0;
-		state.set(r, c, a);
-		update();
+		if(state.canEdit(r, c)){
+			short a=state.get(r, c);
+			a++;
+			if(a>state.getSide())
+				a=0;
+			state.set(r, c, a);
+			update();
+		}
 	}
-	
-	
+
+
 
 
 }

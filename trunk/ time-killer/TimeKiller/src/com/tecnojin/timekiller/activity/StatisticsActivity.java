@@ -12,31 +12,34 @@ package com.tecnojin.timekiller.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
 
 import com.tecnojin.timekiller.R;
 import com.tecnojin.timekiller.games.GameManager;
-import com.tecnojin.timekiller.games.descriptors.options.OptionSet;
 import com.tecnojin.timekiller.games.descriptors.options.StatSet;
-import com.tecnojin.timekiller.menuviews.OptionAdapter;
 import com.tecnojin.timekiller.menuviews.StatisticsAdapter;
 import com.tecnojin.timekiller.util.ActivityUtil;
 
 public class StatisticsActivity extends Activity{
 	private StatSet set;
 	private StatisticsAdapter adapter;
+	private ViewPager pager;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
 		ActivityUtil.makeFullScreen(this);
 		setContentView(R.layout.option_layout);
-		ListView l=(ListView) findViewById(R.id.optionList);
+	
+		pager=new ViewPager(this);
+		((LinearLayout)findViewById(R.id.statisticLayout)).addView(pager);
 
 		int optionIndex=getIntent().getIntExtra(getPackageName()+".statistics", -1);
 
@@ -47,7 +50,7 @@ public class StatisticsActivity extends Activity{
 			finish();
 		}
 		adapter=new StatisticsAdapter(this, android.R.layout.simple_list_item_single_choice, set);
-		l.setAdapter(adapter);
+		pager.setAdapter(adapter);
 
 		
 		ImageView back=(ImageView) findViewById(R.id.back);
