@@ -37,17 +37,17 @@ public class MinesDescriptor extends GameDescriptor {
 		
 	}
 	private void initStats(Context c) {
-		Stat playedEasy=new Stat(R.string.GamePlayedEasy, "playedE", 0+"");
-		Stat terminatedEasy=new Stat(R.string.GameResolvedEasy, "terminatedE", 0+"");
-		Stat percentEasy=new Stat(R.string.percentualEasy, "percentE", 0+"");
+		Stat playedEasy=new Stat(R.string.GamePlayedEasy, "playedE", 0+"",0);
+		Stat terminatedEasy=new Stat(R.string.GameResolvedEasy, "terminatedE", 0+"",0);
+		Stat percentEasy=new Stat(R.string.percentualEasy, "percentE", 0+"",0);
 		
-		Stat playedMedium=new Stat(R.string.GamePlayedMedium, "playedM", 0+"");
-		Stat terminatedMedium=new Stat(R.string.GameResolvedMedium, "terminatedM", 0+"");
-		Stat percentMedium=new Stat(R.string.percentualMedium, "percentM", 0+"");
+		Stat playedMedium=new Stat(R.string.GamePlayedMedium, "playedM", 0+"",1);
+		Stat terminatedMedium=new Stat(R.string.GameResolvedMedium, "terminatedM", 0+"",1);
+		Stat percentMedium=new Stat(R.string.percentualMedium, "percentM", 0+"",1);
 		
-		Stat playedMHard=new Stat(R.string.GamePlayedHard , "playedH", 0+"");
-		Stat terminatedHard=new Stat(R.string.GameResolvedHard, "terminatedH", 0+"");
-		Stat percentHard=new Stat(R.string.percentualHard, "percentH", 0+"");
+		Stat playedMHard=new Stat(R.string.GamePlayedHard , "playedH", 0+"",2);
+		Stat terminatedHard=new Stat(R.string.GameResolvedHard, "terminatedH", 0+"",2);
+		Stat percentHard=new Stat(R.string.percentualHard, "percentH", 0+"",2);
 		
 		statistics=new StatSet("stat_mines.txt",playedEasy,terminatedEasy,percentEasy,playedMedium,terminatedMedium,percentMedium,playedMHard,terminatedHard,percentHard);
 		statistics.load(c);

@@ -36,6 +36,14 @@ public class GameListAdapter extends ArrayAdapter<GameDescriptor>{
 		this.context=context;
 
 	}
+
+	@Override
+	public int getPosition(GameDescriptor g) {
+		for(int i=0;i<getCount();i++)
+			if(GameManager.instance(context).getGameFromIndex(context, i).equals(g))
+				return i;
+			return -1;
+	}
 	@Override
 	public GameDescriptor getItem(int position) {
 		return GameManager.instance(getContext()).getGameFromIndex(getContext(), position);

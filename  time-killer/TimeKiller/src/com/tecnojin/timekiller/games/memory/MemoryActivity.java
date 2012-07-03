@@ -10,8 +10,6 @@
  ******************************************************************************/
 package com.tecnojin.timekiller.games.memory;
 
-import android.util.Log;
-
 import com.tecnojin.timekiller.activity.GameActivity;
 import com.tecnojin.timekiller.games.GameManager;
 import com.tecnojin.timekiller.views.matrix.AbstractMatrix.CellClickedListener;

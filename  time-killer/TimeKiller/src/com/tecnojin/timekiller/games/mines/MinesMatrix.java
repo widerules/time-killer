@@ -73,4 +73,8 @@ public class MinesMatrix extends AbstractMatrix<Integer> {
 		
 	}
 
+	public boolean isFlagged(int row, int col) {
+		return flags[row][col];
+	}
+
 }

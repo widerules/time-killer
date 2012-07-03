@@ -18,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tecnojin.timekiller.R;
@@ -35,17 +36,22 @@ public class OptionActivity extends Activity {
 		ActivityUtil.makeFullScreen(this);
 		setContentView(R.layout.option_layout);
 		ListView l=(ListView) findViewById(R.id.optionList);
+		TextView t=(TextView) findViewById(R.id.appTitle);
 
 		int optionIndex=getIntent().getIntExtra(getPackageName()+".option", -1);
-		if(optionIndex<0)
+		if(optionIndex<0){
 			options=GameManager.instance(this).getGlobalOptions();
-		else
+			t.setText(R.string.Global);
+		}
+		else{
 			options=GameManager.instance(this).getGame(optionIndex, this).getOptions();
-
+			t.setText(GameManager.instance(this).getGame(optionIndex, this).getName());
+		}
 		if(options==null){
 			Toast.makeText(this, R.string.noOption, Toast.LENGTH_SHORT).show();
 			finish();
 		}
+		
 		adapter=new OptionAdapter(this, android.R.layout.simple_list_item_single_choice, options,this);
 		l.setAdapter(adapter);
 

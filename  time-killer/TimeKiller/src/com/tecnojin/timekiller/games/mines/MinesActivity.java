@@ -58,7 +58,9 @@ public class MinesActivity extends GameActivity {
 		m.setListener(new CellClickedListener<Integer>() {
 
 			public void onClick(Cell<Integer> cell) {
-				if(flag.isChecked()){
+				if(m.isFlagged(cell.getRow(), cell.getCol()))
+					return;
+				if(flag.isChecked() && !state.isVisible(cell.getRow(), cell.getCol())){
 					m.setFlag(cell.getRow(), cell.getCol());
 					m.updadeState();
 					return;

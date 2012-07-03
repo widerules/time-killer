@@ -17,8 +17,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -48,7 +46,13 @@ public class GamePageAdapter extends PagerAdapter{
 	public boolean isViewFromObject(View arg0, Object arg1) {
 		return arg0 == arg1;
 	}
-
+	@Override
+	public int getItemPosition(Object object) {
+		for(int i=0;i<getCount();i++)
+			if(GameManager.instance(context).getGameFromIndex(context, i).equals(object))
+				return i;
+			return -1;
+	}
 	@Override
 	public Object instantiateItem(ViewGroup container, int position) {
 
@@ -58,7 +62,7 @@ public class GamePageAdapter extends PagerAdapter{
 
 		TextView t=(TextView) layout.findViewById(R.id.game_name);
 		ImageView icon=(ImageView) layout.findViewById(R.id.gameIcon);
-		
+
 		ImageView sett=(ImageView) layout.findViewById(R.id.settings);
 		ImageView tutorial=(ImageView) layout.findViewById(R.id.tutorial);
 		ImageView stat=(ImageView) layout.findViewById(R.id.stat);
@@ -70,8 +74,8 @@ public class GamePageAdapter extends PagerAdapter{
 				icon.setImageResource(descriptor.getIcon());
 			else
 				icon.setImageResource(R.drawable.work);
-			
-			
+
+
 			if(!descriptor.isReady()){
 				tutorial.setEnabled(false);
 				icon.setEnabled(false);
@@ -80,7 +84,7 @@ public class GamePageAdapter extends PagerAdapter{
 				sett.setEnabled(false);
 			if(descriptor.getStatistics()==null)
 				stat.setVisibility(View.INVISIBLE);
-			
+
 		}
 		icon.setOnClickListener(new myOnclickListener(myOnclickListener.PLAY,GameManager.instance(context).getIndexFor(descriptor),context));
 		sett.setOnClickListener(new myOnclickListener(myOnclickListener.SETTINGS,GameManager.instance(context).getIndexFor(descriptor),context));
@@ -104,7 +108,7 @@ public class GamePageAdapter extends PagerAdapter{
 		public static final int SETTINGS=1;
 		public static final int TUTORIAL=2;
 		public static final int PLAY=3;
-		
+
 		private int gameCode;
 		private Context context;
 		private int mode;
@@ -119,7 +123,7 @@ public class GamePageAdapter extends PagerAdapter{
 
 
 		public void onClick(View arg0) {
-				ActivityUtil.playAnimation(context, R.anim.push, arg0);	
+			ActivityUtil.playAnimation(context, R.anim.push, arg0);	
 			if(mode==SETTINGS){
 				Intent i=new Intent(context,OptionActivity.class);
 				i.putExtra(context.getPackageName()+".option", gameCode);
@@ -143,7 +147,7 @@ public class GamePageAdapter extends PagerAdapter{
 				i.putExtra(context.getPackageName()+".game", gameCode);
 				context.startActivity(i);
 			}
-			
+
 
 
 		}

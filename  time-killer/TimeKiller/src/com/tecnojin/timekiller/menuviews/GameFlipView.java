@@ -14,14 +14,21 @@ import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 
+import com.tecnojin.timekiller.games.descriptors.GameDescriptor;
+
 public class GameFlipView extends ViewPager{
 	private PagerAdapter adapter;
 	public GameFlipView(Context context) {
 		super(context);
 		adapter=new GamePageAdapter(context);
 		setAdapter(adapter);
-		
 	}
+	public void rollTo(GameDescriptor g){
+		int index=adapter.getItemPosition(g);
+		if(index>=0)
+			setCurrentItem(index);
+	}
+	
 	
 
 }

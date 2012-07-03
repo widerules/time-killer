@@ -10,7 +10,6 @@
  ******************************************************************************/
 package com.tecnojin.timekiller.games;
 
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -28,7 +27,6 @@ import com.tecnojin.timekiller.games.descriptors.Puzzle15Descriptor;
 import com.tecnojin.timekiller.games.descriptors.SudokuDescriptor;
 import com.tecnojin.timekiller.games.descriptors.options.Option;
 import com.tecnojin.timekiller.games.descriptors.options.OptionSet;
-import com.tecnojin.timekiller.games.puzzle15.Puzzle15State;
 
 public class GameManager {
 	public static final int FILL_IT=1;
@@ -50,7 +48,7 @@ public class GameManager {
 	private static MinesDescriptor mines;
 	private static MemoryDescriptor memory;
 	private static Puzzle15Descriptor puzzle15;
-
+	
 
 	private OptionSet globalOptionSet;
 
@@ -152,10 +150,14 @@ public class GameManager {
 			return PUZZLE15;
 		return -2;
 	}
-	public List<String> getGameNameList(){
-		LinkedList<String> l=new LinkedList<String>();
-		Collections.addAll(l, "sudoku","fill it","hangman","align","frog","mines","memory","puzzle15");
+	
+
+	public List<GameDescriptor> getGameList(Context c) {
+		LinkedList<GameDescriptor> l=new LinkedList<GameDescriptor>();
+		for(int i=0;i<getGameNumber();i++)
+			l.add(getGameFromIndex(c, i));
 		return l;
+		
 	}
 
 }

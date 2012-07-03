@@ -14,10 +14,9 @@ import java.util.Random;
 
 public class MathUtil {
 	public static int random(int from,int to){
-		Random rn = new Random();
-		
+		Random rn = new Random();		
 		int n = to - from + 1;
-		int i = rn.nextInt() % n;
+		int i = rn.nextInt(n) ;
 		return from + i;
 	}
 }

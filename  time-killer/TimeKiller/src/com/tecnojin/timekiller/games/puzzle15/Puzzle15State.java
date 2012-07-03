@@ -15,11 +15,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
-import java.util.TreeSet;
-
-import com.tecnojin.timekiller.util.MatrixUtil;
 
 import android.graphics.Point;
+import android.util.Log;
+
+import com.tecnojin.timekiller.util.MatrixUtil;
 
 public class Puzzle15State {
 	private int rows,cols;
@@ -77,9 +77,11 @@ public class Puzzle15State {
 			return false;
 		int cont=1;
 		for(int i=0;i<rows;i++)
-			for(int j=0;j<cols;j++)
-				if(matrix[i][j]!=cont++)
+			for(int j=0;j<cols;j++){
+				if(matrix[i][j]!=(cont++) && i!=rows-1 && j!=cont-1)
 					return false;
+				
+			}
 		return true;
 	}
 	public void move(int row,int col){

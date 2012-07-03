@@ -15,84 +15,127 @@ import java.util.List;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.view.KeyEvent;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.TextView.OnEditorActionListener;
 
 import com.tecnojin.timekiller.R;
 import com.tecnojin.timekiller.games.GameManager;
 import com.tecnojin.timekiller.games.descriptors.GameDescriptor;
+
 
 public class FindGameDialog extends AlertDialog {
 	private gameFindListener listener;
 	private LayoutInflater li;
 	private ListView list;
 	private TextView tv;
-	private List<String> names;
-	private ArrayAdapter<String> adapter;
-	private LinkedList<String> found;
-	
+	private List<GameDescriptor> descriptors;
+	private ArrayAdapter<GameDescriptor> adapter;
+	private LinkedList<GameDescriptor> founds;
+
 	public FindGameDialog(Context context,gameFindListener listener) {
 		super(context);
 		this.listener=listener;
 		init();
 	}
-	
+
 	private void init() {
-		names=GameManager.instance(getContext()).getGameNameList();
+		descriptors=GameManager.instance(getContext()).getGameList(getContext());
 		li=(LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View layout=li.inflate(R.layout.game_find_dialog, null);
 		setView(layout);
-		
-		
-		
 		list=(ListView) layout.findViewById(R.id.list);
 		tv=(TextView) layout.findViewById(R.id.text);
-		found=new LinkedList<String>();
+		founds=new LinkedList<GameDescriptor>();
 		setCancelable(true);
-		
-		adapter=new ArrayAdapter<String>(getContext(),android.R.layout.simple_list_item_1,found);
+		adapter=new SimpleGameAdapter(getContext(), R.layout.sliim_game_list_item);
 		list.setAdapter(adapter);
-		
-		fillAdapter();
-		
-		
-		
-		tv.setOnEditorActionListener(new OnEditorActionListener() {
-			
-			public boolean onEditorAction(TextView arg0, int arg1, KeyEvent arg2) {
-				search();
-				return false;
-			}
 
+		fillAdapter();
+
+
+		tv.addTextChangedListener(new TextWatcher() {
 			
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+								
+			}
+			
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+								
+			}
+			
+			public void afterTextChanged(Editable s) {
+				search();
+				
+			}
 		});
 		
+		list.setOnItemClickListener(new OnItemClickListener() {
+
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				listener.gameFound(founds.get(arg2));
+				dismiss();
+				
+			}
 		
+		});
+
+
 	}
-	private void search() {
+	private void search() {		
 		String s=tv.getText().toString();
-		found.clear();
-		for(String ss:names)
-			if(ss.toLowerCase().contains(s.toLowerCase()))
-				found.add(ss);
+		if(s.length()==0)
+			return;
+		founds.clear();
+		for(GameDescriptor g:descriptors){
+			String name=getContext().getString(g.getName());
+			if(name.toLowerCase().contains(s.toLowerCase()))				
+				founds.add(g);
+		}
 		fillAdapter();
-		
+
 	}
 	private void fillAdapter() {
-		adapter=new ArrayAdapter<String>(getContext(),android.R.layout.simple_list_item_1,found);
 		list.invalidate();
 		adapter.notifyDataSetInvalidated();
-		
-		
 	}
 
 	public interface gameFindListener{
 		public void gameFound(GameDescriptor g);
 	}
+	class SimpleGameAdapter extends ArrayAdapter<GameDescriptor>{
 
+		public SimpleGameAdapter(Context context, int textViewResourceId) {
+			super(context, textViewResourceId);
+		}
+
+		@Override
+		public int getCount() {
+			return founds.size();
+		}
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			View v = convertView;
+			GameDescriptor g=founds.get(position);
+			v=li.inflate(R.layout.sliim_game_list_item, null);
+			ImageView icon=(ImageView) v.findViewById(R.id.gameIcon);
+			icon.setImageResource(g.getIcon());
+			TextView name=(TextView) v.findViewById(R.id.game_name);
+			name.setText(g.getName());
+
+
+			return v;
+		}
+
+	}
 }

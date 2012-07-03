@@ -18,7 +18,6 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -30,7 +29,6 @@ import com.google.ads.AdView;
 import com.tecnojin.timekiller.R;
 import com.tecnojin.timekiller.games.GameManager;
 import com.tecnojin.timekiller.games.descriptors.GameDescriptor;
-import com.tecnojin.timekiller.games.descriptors.options.Stat;
 import com.tecnojin.timekiller.games.descriptors.options.StatSet;
 import com.tecnojin.timekiller.util.ActivityUtil;
 

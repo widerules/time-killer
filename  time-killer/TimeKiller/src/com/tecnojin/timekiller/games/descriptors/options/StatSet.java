@@ -21,20 +21,23 @@ import java.util.List;
 import java.util.Properties;
 
 import android.content.Context;
-import android.util.Log;
 
 
 public class StatSet implements Iterable<Stat> {
 	private String optionFileName;	
 	private Properties p;	
 	private List<Stat> stats;	
+	private int pageNumbers=1;
 	
 
 	public StatSet(String optionFileName,Stat ... stats) {
 		super();
 		this.optionFileName = optionFileName;
 		this.stats =new LinkedList<Stat>();
-		Collections.addAll(this.stats, stats);
+		for(Stat s:stats){
+			this.stats.add(s);
+			pageNumbers=Math.max(pageNumbers, s.getPage()+1);
+		}
 	}
 	
 	public void load(Context c){
@@ -103,6 +106,17 @@ public class StatSet implements Iterable<Stat> {
 	}
 	public int getStatsCount(){
 		return stats.size();
+	}
+
+	public int getPageCount() {
+		return pageNumbers;
+	}
+	public List<Stat> getFromPage(int page){
+		LinkedList<Stat> l=new LinkedList<Stat>();
+		for(Stat s:stats)
+			if(s.getPage()==page)
+				l.add(s);
+		return l;
 	}
 	
 
