@@ -41,7 +41,7 @@ public class FrogMatrix extends AbstractMatrix<Integer>{
 		b.setBackgroundColor(colors.get( state.get(row, col)));
 		
 		b.setString("");		
-		b.setTextSize(25);
+		//b.setTextSize(25);
 		if (state.get(row, col)==FrogState.FROG){
 			if(state.getCurrentDirection()==FrogState.LEFT)
 				b.setString("<");

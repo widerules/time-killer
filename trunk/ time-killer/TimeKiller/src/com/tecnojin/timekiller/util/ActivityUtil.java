@@ -19,6 +19,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 public class ActivityUtil {
@@ -49,5 +50,13 @@ public class ActivityUtil {
 	public static void setFont(TextView t,String font){
 		Typeface type=Typeface.createFromAsset(t.getContext().getAssets(),font);
 		t.setTypeface(type);
+	}
+	public static void showKeyboard(Context c,View v){
+		InputMethodManager mgr = (InputMethodManager) c.getSystemService(Context.INPUT_METHOD_SERVICE);
+		mgr.showSoftInput(v, InputMethodManager.SHOW_IMPLICIT);
+	}
+	public static void hideKeyboard(Context c,View v){
+		InputMethodManager mgr = (InputMethodManager) c.getSystemService(Context.INPUT_METHOD_SERVICE);
+		mgr.hideSoftInputFromInputMethod(v.getWindowToken(),0);
 	}
 }

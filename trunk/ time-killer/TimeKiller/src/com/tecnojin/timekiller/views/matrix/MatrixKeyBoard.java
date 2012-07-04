@@ -68,7 +68,7 @@ public class MatrixKeyBoard extends AbstractMatrix<String>{
 		if(t.getContent().length()!=0)
 			t.setBackgroundColor(Color.WHITE);
 		t.setTextColor(Color.BLACK);
-		t.setTextSize(22);
+		t.setTextSize(25);
 		return t;
 	}
 	public void disableButton(Character c){

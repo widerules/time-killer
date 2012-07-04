@@ -32,18 +32,20 @@ public class SudokuMatrix extends AbstractMatrix<Integer>{
 	@Override
 	public Cell<Integer> createCell(int row, int col) {
 		BorderCell<Integer> b=new BorderCell<Integer>(row, col, cont++);
-		b.setTextSize(22);
+	//	b.setTextSize(22);
 		b.setTextColor(Color.BLACK);
 		b.setBorderColor(Color.BLACK);
 
-		b.setBorderWidth(0.01);
+		
 		if(col!=state.getSide()-1)
 			b.setRight(true);
 		if(row!=state.getSide()-1)
 			b.setDown(true);
 
-
-		b.setBorderWidth(0.2);
+		b.setBorderWidth(0.1);
+		
+		
+	
 
 		short s=state.get(row, col);
 		if(s!=0)

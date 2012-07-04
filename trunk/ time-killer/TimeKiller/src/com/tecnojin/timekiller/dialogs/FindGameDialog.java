@@ -30,6 +30,7 @@ import android.widget.TextView;
 import com.tecnojin.timekiller.R;
 import com.tecnojin.timekiller.games.GameManager;
 import com.tecnojin.timekiller.games.descriptors.GameDescriptor;
+import com.tecnojin.timekiller.util.ActivityUtil;
 
 
 public class FindGameDialog extends AlertDialog {
@@ -60,6 +61,7 @@ public class FindGameDialog extends AlertDialog {
 		list.setAdapter(adapter);
 
 		fillAdapter();
+		ActivityUtil.showKeyboard(getContext(), tv);
 
 
 		tv.addTextChangedListener(new TextWatcher() {
