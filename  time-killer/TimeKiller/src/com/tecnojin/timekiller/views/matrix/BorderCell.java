@@ -38,6 +38,8 @@ public class BorderCell<T> extends TextCell<T>{
 	}
 	@Override
 	public void draw(Canvas c) {
+		if(!isVisible())
+			return;
 		super.draw(c);
 		if(left)
 			left(c);

@@ -20,7 +20,8 @@ public abstract class Cell<T>{
 	private int row,col;
 	private int height,width;
 	private int left,top;
-	private T content;	
+	private T content;
+	private boolean visible=true;
 	
 	public Cell(int row, int col,
 			T content) {	
@@ -28,8 +29,13 @@ public abstract class Cell<T>{
 		this.col = col;
 		this.content = content;
 	}
-	
-	public abstract void draw(Canvas c);
+	public void setVisible(boolean visible) {
+		this.visible = visible;
+	}
+	public void draw(Canvas c){
+		if(!isVisible())
+			return;
+	}
 	
 	public void updateParameters(int left,int top,int height,int width){
 		this.left=left;
@@ -81,6 +87,9 @@ public abstract class Cell<T>{
 	}
 	public void setContent(T content) {
 		this.content = content;
+	}
+	public boolean isVisible() {
+		return visible;
 	}
 	
 	

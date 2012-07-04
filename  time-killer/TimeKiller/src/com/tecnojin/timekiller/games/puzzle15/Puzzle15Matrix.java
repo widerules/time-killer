@@ -33,10 +33,14 @@ public class Puzzle15Matrix extends AbstractMatrix<Integer> {
 	}
 
 	private void updateCell(BorderCell<Integer> a) {
-		if(state.getValueAt(a.getRow(), a.getCol())==0)
+		if(state.getValueAt(a.getRow(), a.getCol())==0){
+			a.setVisible(false);
 			a.setString("");
-		else
+		}
+		else{
+			a.setVisible(true);
 			a.setString(""+state.getValueAt(a.getRow(), a.getCol()));		
+		}
 	}
 	public void updadeState(){
 		for(int i=0;i<state.getRows();i++)

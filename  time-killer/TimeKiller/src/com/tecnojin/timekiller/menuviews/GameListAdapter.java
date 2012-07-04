@@ -22,6 +22,7 @@ import com.tecnojin.timekiller.R;
 import com.tecnojin.timekiller.games.GameManager;
 import com.tecnojin.timekiller.games.descriptors.GameDescriptor;
 import com.tecnojin.timekiller.menuviews.GamePageAdapter.myOnclickListener;
+import com.tecnojin.timekiller.util.ActivityUtil;
 
 public class GameListAdapter extends ArrayAdapter<GameDescriptor>{
 	private LayoutInflater li;
@@ -79,6 +80,7 @@ public class GameListAdapter extends ArrayAdapter<GameDescriptor>{
 			ImageView icon=(ImageView) v.findViewById(R.id.gameIcon);
 			icon.setOnClickListener(new myOnclickListener(myOnclickListener.PLAY,GameManager.instance(context).getIndexFor(g),context));
 			TextView name=(TextView) v.findViewById(R.id.game_name);
+			ActivityUtil.setFont(name, ActivityUtil.FONTS_BATES_SHOWER);
 			if(g.isReady())
 			icon.setImageResource(g.getIcon());
 			else
